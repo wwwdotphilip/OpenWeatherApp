@@ -61,5 +61,6 @@ That's it, your done.
 At the moment it can only get your current location weather but I will add a feature later where you can add multiple locations. Or you can fork this repo and help improve it.
     
 ## License
-MIT<br>
+The MIT License (MIT)<br>
+Copyright (c) <2016> <Lazy Juan><br>
 https://opensource.org/licenses/mit-license.php
