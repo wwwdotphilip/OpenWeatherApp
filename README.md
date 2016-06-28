@@ -7,28 +7,44 @@ This is an android library for http://openweathermap.org/ to use for it's weathe
 add this to your app gradle.build dependency
 
     dependencies {
-          compile 'ph.com.juan.lazy.openweather:openweather:1.0.0'
+          compile 'ph.com.juan.lazy.openweather:openweather:1.0.3'
     }
 
 ### Usage:
 
 Make sure you have registered to openweathermap.org and have the api key if you didn't you can register [here](https://home.openweathermap.org/users/sign_up). Once you sing in go to Api Key tab ang copy the api key.
 
-Declair OpenWeather class
+Declare OpenWeather class
 
-    OpenWeather openweather = new OpenWeather(this, <your OpenWeather API key>);
-    openweather.getWeather();
+    OpenWeather openweather = new OpenWeather(this, "Your OpenWeather API key");
+    
+enter city name you want
+
+    openweather.city = "Your city";
+    
+or provide the long and latitude
+    
+    openweather.longitude = 128.2345324234;
+    openweather.latitude = 75.132432454;
     
 now add a callback
 
     openWeather.setCallback(new OpenWeather.OpenWeatherCallback() {
         @Override
-        public void onDownloadComplete(data data) {
-            // Do your stuff here
+        public void onDownloadComplete(data data, String error) {
+            if (error != null){
+                // show error message here
+            } else {
+                // do your stuff here.
+            }
         }
     });
     
-That's it your done.
+finally execute the weather search
+
+    openweather.getWeather();
+    
+That's it, your done.
     
 ### Features:
 
