@@ -2,7 +2,6 @@ package ph.com.juan.lazy.openweather;
 
 
 import android.content.Context;
-import android.location.Location;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -18,67 +17,42 @@ public class OpenWeather {
     private Context context;
     private String APIKey;
     private OpenWeatherCallback callback;
-    private LCL lcl;
-
-    public OpenWeather(Context context){
-        this.context = context;
-        init();
-    }
+    public Long longitude, latitude;
+    public String city;
 
     public OpenWeather(Context context, String APIKey){
         this.context = context;
         this.APIKey = APIKey;
-        init();
     }
 
     public interface OpenWeatherCallback{
-        void onDownloadComplete(data data);
+        void onDownloadComplete(data data, String error);
     }
 
-    /**
-     * Initialize open weather
-     */
-    private void init(){
-        lcl = new LCL(context);
-        lcl.setCallback(new LCL.LCLCallback() {
-            @Override
-            public void onLocationFound(Location location) {
-                requestWeather(location);
-            }
-        });
-    }
-
-    /**
-     * Call open weather api
-     */
-    public void getWeather(){
-        lcl.findLocation();
-        lcl.requestUpdates();
-    }
-
-    /**
-     * Set your API Key
-     * You can get your api key by signing up to <a href="url">https://home.openweathermap.org/users/sign_up</a>
-     * @param APIKey apikey from http://openweathermap.org/
-     */
-    public void setAPIKey(String APIKey){
-        this.APIKey = APIKey;
-    }
-
-    private void requestWeather(Location location){
+    public void requestWeather(){
         if (Utils.isConnectedToNetwork(context)){
+            String request;
+            if (longitude != null && latitude != null){
+                request = "lat=" + longitude + "2&lon=" + longitude;
+            } else if(city != null){
+                request = "q=" + city.replaceAll(" ", "%20");
+            } else {
+                if (callback != null){
+                    callback.onDownloadComplete(null, "No location provided.");
+                }
+                return;
+            }
             RequestQueue queue = Volley.newRequestQueue(context);
-            String url ="http://api.openweathermap.org/data/2.5/weather?lat=" +
-                    location.getLatitude() + "2&lon=" +
-                    location.getLongitude() + "&APPID=" +
-                    APIKey;
+            String url ="http://api.openweathermap.org/data/2.5/weather?"
+                    + request + "&appid=" + APIKey;
 
             StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     data data = new Gson().fromJson(response, data.class);
-                    callback.onDownloadComplete(data);
-                    lcl.removeUpdates();
+                    if (callback != null) {
+                        callback.onDownloadComplete(data, null);
+                    }
                 }
             }, new Response.ErrorListener() {
                 @Override

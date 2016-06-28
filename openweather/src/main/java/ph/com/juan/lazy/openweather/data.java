@@ -90,4 +90,9 @@ public class data {
     public String getWeatherDescription(){
         return weather[0].description;
     }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }
