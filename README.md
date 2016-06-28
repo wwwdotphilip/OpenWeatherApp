@@ -1,5 +1,7 @@
 # OpenWeatherApp
 
+[ ![Bintray](https://api.bintray.com/packages/wwwdotphilip/maven/openweather/images/download.svg) ](https://bintray.com/wwwdotphilip/maven/openweather/_latestVersion)
+
 This is an android library for http://openweathermap.org/ to use for it's weather api
 
 ### Installation:
