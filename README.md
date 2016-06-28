@@ -10,6 +10,14 @@ add this to your app gradle.build dependency
           compile 'ph.com.juan.lazy.openweather:openweather:1.0.3'
     }
 
+Make sure you have jcenter() in your project build.gradle which is default when you create your android project but just to make sure.
+
+    buildscript {
+        repositories {
+            jcenter()
+        }
+    }
+
 ### Usage:
 
 Make sure you have registered to openweathermap.org and have the api key if you didn't you can register [here](https://home.openweathermap.org/users/sign_up). Once you sing in go to Api Key tab ang copy the api key.
