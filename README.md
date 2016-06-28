@@ -12,7 +12,7 @@ add this to your app gradle.build dependency
 
 ### Usage:
 
-Make sure you have registered to openweathermap.org and have the api key if now you can register [here](https://home.openweathermap.org/users/sign_up). Once you sing in go to Api Key tab ang copy the api key.
+Make sure you have registered to openweathermap.org and have the api key if you didn't you can register [here](https://home.openweathermap.org/users/sign_up). Once you sing in go to Api Key tab ang copy the api key.
 
 Declair OpenWeather class
 
