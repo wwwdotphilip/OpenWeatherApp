@@ -1,5 +1,7 @@
 # OpenWeatherApp
 
+This is an android library for http://openweathermap.org/ to use for it's weather api
+
 ### Installation:
 
 add this to your app gradle.build dependency
@@ -9,6 +11,8 @@ add this to your app gradle.build dependency
     }
 
 ### Usage:
+
+Make sure you have registered to openweathermap.org and have the api key if now you can register [here](https://home.openweathermap.org/users/sign_up). Once you sing in go to Api Key tab ang copy the api key.
 
 Declair OpenWeather class
 
@@ -25,6 +29,10 @@ now add a callback
     });
     
 That's it your done.
+    
+### Features:
+
+At the moment it can only get your current location weather but I will add a feature later where you can add multiple locations. Or you can fork this repo and help improve it.
     
 ## License
 MIT<br>
